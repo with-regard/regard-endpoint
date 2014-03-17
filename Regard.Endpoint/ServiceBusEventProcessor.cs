@@ -25,6 +25,7 @@ namespace Regard.Endpoint
         {
             string serviceBusMessage = JsonConvert.SerializeObject(new
                                                                    {
+                                                                       schema_version = 0x100,
                                                                        organization = organization,
                                                                        product = product,
                                                                        payload = payload
