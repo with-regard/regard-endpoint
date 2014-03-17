@@ -19,7 +19,7 @@ namespace Regard.Endpoint
         /// <summary>
         /// Process a user metrics event request
         /// </summary>
-        [Route("track/{organization}/{productId}/event")]
+        [Route("track/v1/{organization}/{productId}/event")]
         [HttpPost]
         public async Task<HttpResponseMessage> ReceiveEvent(string organization, string productId)
         {
