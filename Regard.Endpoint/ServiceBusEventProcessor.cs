@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 using Newtonsoft.Json;
@@ -9,14 +9,14 @@ namespace Regard.Endpoint
     {
         private readonly TopicClient m_AnalyticsTopic;
 
-        public ServiceBusEventProcessor()
+        public ServiceBusEventProcessor(IServiceBusEventProcessorSettings settings)
         {
-            var regardNamespace = NamespaceManager.CreateFromConnectionString(c_ConnectionString);
+            var regardNamespace = NamespaceManager.CreateFromConnectionString(settings.ServiceBusConnectionString);
 
-            if (!regardNamespace.TopicExists(c_AnalyticsTopic))
-                regardNamespace.CreateTopic(c_AnalyticsTopic);
+            if (!regardNamespace.TopicExists(settings.AnalyticsTopicName))
+                regardNamespace.CreateTopic(settings.AnalyticsTopicName);
 
-            TopicClient fromConnectionString = TopicClient.CreateFromConnectionString(c_ConnectionString, c_AnalyticsTopic);
+            TopicClient fromConnectionString = TopicClient.CreateFromConnectionString(settings.ServiceBusConnectionString, settings.AnalyticsTopicName);
 
             m_AnalyticsTopic = fromConnectionString;
         }

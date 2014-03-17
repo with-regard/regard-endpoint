@@ -14,7 +14,7 @@ namespace Regard.Endpoint
         /// <summary>
         /// Primary event processor
         /// </summary>
-        private readonly IEventProcessor m_EventProcessor = new ServiceBusEventProcessor();
+        private readonly IEventProcessor m_EventProcessor = new ServiceBusEventProcessor(new ServiceBusEventProcessorSettings());
 
         /// <summary>
         /// Process a user metrics event request
