@@ -20,7 +20,7 @@ task package {
     "Packaging"
     "   Regard.Endpoint.sln"
 
-    exec { msbuild $base_dir\Regard.Endpoint\Regard.Endpoint.csproj /t:Package /p:Configuration=$config /nologo /verbosity:minimal }
+    exec { msbuild $base_dir\Regard.Endpoint\Regard.Endpoint.csproj /t:Package /p:Configuration=$config /p:VisualStudioVersion=11.0 /nologo /verbosity:minimal }
 }
 
 function Get-ProgramFiles
