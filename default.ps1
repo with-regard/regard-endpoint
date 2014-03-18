@@ -17,6 +17,7 @@ task compile {
 }
 
 task package {
+task package -depends compile {
     "Packaging"
     "   Regard.Endpoint.sln"
 
