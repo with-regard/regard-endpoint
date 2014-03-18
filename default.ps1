@@ -20,7 +20,7 @@ task package -depends compile {
     "Packaging"
     "   Regard.Endpoint.sln"
 
-    exec { msbuild $base_dir\Regard.Endpoint\Regard.Endpoint.csproj /t:Package /p:Configuration=$config /tv:4.0  }
+    exec { msbuild $base_dir\Regard.Endpoint\Regard.Endpoint.csproj /t:Package /p:Configuration=$config /p:PackageLocation="$build_dir\package.zip" /tv:4.0  }
 }
 
 function Get-ProgramFiles
