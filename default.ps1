@@ -13,7 +13,7 @@ task compile {
     "Compiling"
     "   Regard.Endpoint.sln"
     
-    exec { msbuild $base_dir\Regard.Endpoint.sln /p:Configuration=$config /nologo /verbosity:minimal }
+    exec { msbuild $base_dir\Regard.Endpoint.sln /p:Configuration=$config /p:VisualStudioVersion=10.0 /nologo /verbosity:minimal }
 }
 
 task package {
