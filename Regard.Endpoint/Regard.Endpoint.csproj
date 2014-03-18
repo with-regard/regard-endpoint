@@ -103,7 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <EmbeddedResource Include="AzureSettings\AzureSettings.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -121,7 +120,7 @@
     <Compile Include="IServiceBusEventProcessorSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBusEventProcessor.cs" />
-    <Compile Include="ServiceBusEventProcessorSettings.cs" />
+    <Compile Include="ConfigurationManagerBasedSettings.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <PropertyGroup>

@@ -6,7 +6,7 @@ namespace Regard.Endpoint
     {
         public override void Load()
         {
-            Bind<IServiceBusEventProcessorSettings>().To<ServiceBusEventProcessorSettings>().InSingletonScope();
+            Bind<IServiceBusEventProcessorSettings>().To<ConfigurationManagerBasedSettings>().InSingletonScope();
             Bind<IEventProcessor>().To<ServiceBusEventProcessor>().InSingletonScope();
         }
     }
