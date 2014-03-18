@@ -5,7 +5,7 @@ namespace Regard.Endpoint
     /// <summary>
     /// Interface implemented by objects that process metrics events
     /// </summary>
-    internal interface IEventProcessor
+    public interface IEventProcessor
     {
         /// <summary>
         /// Handles an event

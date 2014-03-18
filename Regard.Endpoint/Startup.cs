@@ -1,5 +1,7 @@
 ﻿using System.Web.Http;
+using Ninject;
 using Owin;
+using WebApiContrib.IoC.Ninject;
 
 namespace Regard.Endpoint
 {
@@ -10,6 +12,11 @@ namespace Regard.Endpoint
             // Configure for attribute routes
             var httpConfiguration = new HttpConfiguration();
             httpConfiguration.MapHttpAttributeRoutes();
+
+            httpConfiguration.DependencyResolver = new NinjectResolver(new StandardKernel(new NinjectSettings
+                {
+                    InjectNonPublic = true
+                }, new EndpointModule()));
 
             app.UseWebApi(httpConfiguration);
 
