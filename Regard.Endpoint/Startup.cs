@@ -24,7 +24,7 @@ namespace Regard.Endpoint
             app.Run(async context =>
                           {
                               context.Response.ContentType = "text/plain";
-                              await context.Response.WriteAsync("Hello, world.");
+                              await context.Response.WriteAsync("Hello, world. Again.");
                           });
         }
     }
