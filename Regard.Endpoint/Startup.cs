@@ -17,10 +17,10 @@ namespace Regard.Endpoint
                 InjectNonPublic = true
             }, new EndpointModule()));
             httpConfiguration.MapHttpAttributeRoutes();
-            
-            app.UseCors(CorsOptions.AllowAll)
-                .UseWebApi(httpConfiguration)
-                .Run(async x => x.Response.Redirect("https://withregard.io"));
+
+            app.UseCors(CorsOptions.AllowAll);
+            app.UseWebApi(httpConfiguration);
+            app.Run(async x => x.Response.Redirect("https://withregard.io"));
         }
     }
 }
