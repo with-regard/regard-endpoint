@@ -7,10 +7,12 @@ namespace Regard.Endpoint
 {
     internal class ServiceBusEventProcessor : IEventProcessor
     {
+        private readonly IEventValidator m_EventValidator;
         private readonly TopicClient m_AnalyticsTopic;
 
-        public ServiceBusEventProcessor(IServiceBusEventProcessorSettings settings)
+        public ServiceBusEventProcessor(IServiceBusEventProcessorSettings settings, IEventValidator eventValidator)
         {
+            m_EventValidator = eventValidator;
             var regardNamespace = NamespaceManager.CreateFromConnectionString(settings.ServiceBusConnectionString);
 
             if (!regardNamespace.TopicExists(settings.AnalyticsTopicName))
@@ -21,8 +23,11 @@ namespace Regard.Endpoint
             m_AnalyticsTopic = fromConnectionString;
         }
 
-        public async Task Process(string organization, string product, string payload)
+        public async Task<bool> Process(string organization, string product, string payload)
         {
+            if (!m_EventValidator.IsValid(payload))
+                return false;
+
             string serviceBusMessage = JsonConvert.SerializeObject(new
                                                                    {
                                                                        schema_version = 0x100,
@@ -34,6 +39,8 @@ namespace Regard.Endpoint
             var brokeredMessage = new BrokeredMessage(serviceBusMessage);
                 
             await m_AnalyticsTopic.SendAsync(brokeredMessage);
+
+            return true;
         }
     }
 }

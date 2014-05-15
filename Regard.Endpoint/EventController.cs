@@ -36,10 +36,9 @@ namespace Regard.Endpoint
             // Pass on the message to the event processor
             string payload = await Request.Content.ReadAsStringAsync();
 
-            await m_EventProcessor.Process(organization, productId, payload);
+            bool eventWasProcessed = await m_EventProcessor.Process(organization, productId, payload);
 
-            // Looks good
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return new HttpResponseMessage(eventWasProcessed ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
         }
     }
 }

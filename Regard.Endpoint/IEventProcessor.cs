@@ -10,6 +10,6 @@ namespace Regard.Endpoint
         /// <summary>
         /// Handles an event
         /// </summary>
-        Task Process(string organization, string product, string payload);
+        Task<bool> Process(string organization, string product, string payload);
     }
 }
