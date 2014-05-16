@@ -8,6 +8,7 @@ namespace Regard.Endpoint
         {
             Bind<IServiceBusEventProcessorSettings>().To<ConfigurationManagerBasedSettings>().InSingletonScope();
             Bind<IEventProcessor>().To<ServiceBusEventProcessor>().InSingletonScope();
+            Bind<IEventValidator>().To<EventValidator>().InSingletonScope();
         }
     }
 }
