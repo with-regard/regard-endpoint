@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Net;
+using System.Web.Http;
 using Microsoft.Owin.Cors;
 using Ninject;
 using Owin;
@@ -20,7 +21,19 @@ namespace Regard.Endpoint
 
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(httpConfiguration);
-            app.Run(async x => x.Response.Redirect("https://withregard.io"));
+            app.Run(async x =>
+                          {
+                              switch (x.Request.Method)
+                              {
+                                  case "GET":
+                                      x.Response.Redirect("https://withregard.io");
+                                      break;
+                                  default:
+                                      x.Response.StatusCode = (int) HttpStatusCode.NotFound;
+                                      break;
+                              }
+                          });
+
         }
     }
 }
