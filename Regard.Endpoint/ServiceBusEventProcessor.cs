@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 using Newtonsoft.Json;
@@ -36,7 +38,7 @@ namespace Regard.Endpoint
                                                                        payload = payload
                                                                    });
 
-            var brokeredMessage = new BrokeredMessage(serviceBusMessage);
+            var brokeredMessage = new BrokeredMessage(new MemoryStream(Encoding.UTF8.GetBytes(serviceBusMessage)), true);
                 
             await m_AnalyticsTopic.SendAsync(brokeredMessage);
 
