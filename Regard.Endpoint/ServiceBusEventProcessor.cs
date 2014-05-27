@@ -40,9 +40,10 @@ namespace Regard.Endpoint
 
             byte[] buffer = Encoding.UTF8.GetBytes(serviceBusMessage);
 
-            var brokeredMessage = new BrokeredMessage(new MemoryStream(buffer, 0, buffer.Length, false, true), true);
-                
-            await m_AnalyticsTopic.SendAsync(brokeredMessage);
+            using (var brokeredMessage = new BrokeredMessage(new MemoryStream(buffer, 0, buffer.Length, false, true), true))
+            {
+                await m_AnalyticsTopic.SendAsync(brokeredMessage);
+            }
 
             return true;
         }
