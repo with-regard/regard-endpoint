@@ -127,6 +127,8 @@
     <Compile Include="IEventProcessor.cs" />
     <Compile Include="IEventValidator.cs" />
     <Compile Include="IServiceBusEventProcessorSettings.cs" />
+    <Compile Include="NinjectResolver.cs" />
+    <Compile Include="NinjectScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBusEventProcessor.cs" />
     <Compile Include="ConfigurationManagerBasedSettings.cs" />

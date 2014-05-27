@@ -3,7 +3,6 @@ using System.Web.Http;
 using Microsoft.Owin.Cors;
 using Ninject;
 using Owin;
-using WebApiContrib.IoC.Ninject;
 
 namespace Regard.Endpoint
 {
