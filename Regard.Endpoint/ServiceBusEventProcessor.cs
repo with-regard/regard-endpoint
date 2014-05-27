@@ -38,7 +38,9 @@ namespace Regard.Endpoint
                                                                        payload = payload
                                                                    });
 
-            var brokeredMessage = new BrokeredMessage(new MemoryStream(Encoding.UTF8.GetBytes(serviceBusMessage)), true);
+            byte[] buffer = Encoding.UTF8.GetBytes(serviceBusMessage);
+
+            var brokeredMessage = new BrokeredMessage(new MemoryStream(buffer, 0, buffer.Length, false, true), true);
                 
             await m_AnalyticsTopic.SendAsync(brokeredMessage);
 
