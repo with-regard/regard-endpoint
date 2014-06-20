@@ -15,7 +15,8 @@ namespace Regard.Endpoint
         {
         }
 
-        public Startup(EndpointModule module)
+        //Tests can get to this, but helios loader can't. Helios will try to do DI on public constructors. Weird.
+        internal Startup(EndpointModule module)
         {
             m_Module = module;
         }
