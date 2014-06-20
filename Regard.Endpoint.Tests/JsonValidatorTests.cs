@@ -51,7 +51,7 @@ namespace Regard.Endpoint.Tests
 
         private bool Validate(string json)
         {
-            return new EventValidator().IsValid(JObject.Parse(json));
+            return new EventValidator().IsValid(json);
         }
     }
 }

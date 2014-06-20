@@ -46,6 +46,18 @@ namespace Regard.Endpoint
                 );
         }
 
+        public bool IsValid(string individualEvent)
+        {
+            try
+            {
+                return IsValid(JObject.Parse(individualEvent));
+            }
+            catch (JsonReaderException)
+            {
+                return false;
+            }
+        }
+
         public bool IsValid(JObject individualEventObject)
         {
             try
