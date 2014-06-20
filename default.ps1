@@ -16,7 +16,13 @@ task compile {
     exec { msbuild $base_dir\Regard.Endpoint.sln /p:Configuration=$config /tv:4.0 }
 }
 
-task package -depends compile {
+task test -depends compile {
+    "Testing"
+    
+    exec { & $base_dir\packages\NUnit.Runners.2.6.3\tools\nunit-console.exe $base_dir\Regard.Endpoint.Tests\bin\$config\Regard.Endpoint.Tests.dll }
+}
+
+task package -depends test {
     "Packaging"
     "   Regard.Endpoint.sln"
 
