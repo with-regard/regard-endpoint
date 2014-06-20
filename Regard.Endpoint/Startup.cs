@@ -8,6 +8,18 @@ namespace Regard.Endpoint
 {
     public class Startup
     {
+        private readonly EndpointModule m_Module;
+
+        public Startup()
+            : this(new EndpointModule())
+        {
+        }
+
+        public Startup(EndpointModule module)
+        {
+            m_Module = module;
+        }
+
         public void Configuration(IAppBuilder app)
         {
             // Configure for attribute routes
@@ -15,7 +27,7 @@ namespace Regard.Endpoint
             httpConfiguration.DependencyResolver = new NinjectResolver(new StandardKernel(new NinjectSettings
             {
                 InjectNonPublic = true
-            }, new EndpointModule()));
+            }, m_Module));
             httpConfiguration.MapHttpAttributeRoutes();
 
             app.UseCors(CorsOptions.AllowAll);

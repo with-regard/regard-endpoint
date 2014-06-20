@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -52,7 +51,7 @@ namespace Regard.Endpoint.Tests
 
         private bool Validate(string json)
         {
-            return new EventValidator().IsValid(json);
+            return new EventValidator().IsValid(JObject.Parse(json));
         }
     }
 }

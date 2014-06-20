@@ -1,7 +1,9 @@
-﻿namespace Regard.Endpoint
+﻿using Newtonsoft.Json.Linq;
+
+namespace Regard.Endpoint
 {
     internal interface IEventValidator
     {
-        bool IsValid(string eventPayload);
+        bool IsValid(JObject eventPayload);
     }
 }

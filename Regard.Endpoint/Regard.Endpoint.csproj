@@ -126,10 +126,14 @@
     <Compile Include="EventValidator.cs" />
     <Compile Include="IEventProcessor.cs" />
     <Compile Include="IEventValidator.cs" />
+    <Compile Include="IPayloadValidator.cs" />
+    <Compile Include="IServiceBusClient.cs" />
     <Compile Include="IServiceBusEventProcessorSettings.cs" />
     <Compile Include="NinjectResolver.cs" />
     <Compile Include="NinjectScope.cs" />
+    <Compile Include="PayloadValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceBusClient.cs" />
     <Compile Include="ServiceBusEventProcessor.cs" />
     <Compile Include="ConfigurationManagerBasedSettings.cs" />
     <Compile Include="Startup.cs" />
