@@ -29,9 +29,11 @@ namespace Regard.Endpoint
         [HttpPost, Route("track/v1/{organization}/{productId}/event")]
         public async Task<HttpResponseMessage> ReceiveEvent(string organization, string productId)
         {
-            // Sanity!
             try
             {
+                Trace.TraceInformation("Receiving event");
+
+                // Sanity!
                 if (m_EventProcessor == null)
                 {
                     throw new HttpException((int) HttpStatusCode.InternalServerError,
