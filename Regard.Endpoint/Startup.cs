@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
 using System.Web.Http;
 using Microsoft.Owin.Cors;
 using Ninject;
@@ -23,6 +24,8 @@ namespace Regard.Endpoint
 
         public void Configuration(IAppBuilder app)
         {
+            Trace.TraceInformation("Regard Endpoint is starting");
+
             // Configure for attribute routes
             var httpConfiguration = new HttpConfiguration();
             httpConfiguration.DependencyResolver = new NinjectResolver(new StandardKernel(new NinjectSettings
