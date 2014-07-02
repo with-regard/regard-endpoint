@@ -41,6 +41,7 @@ namespace Regard.Endpoint
                               switch (x.Request.Method)
                               {
                                   case "GET":
+                                      Trace.TraceInformation("Redirect to withregard.io from {0}", x.Request.Uri);
                                       x.Response.Redirect("https://withregard.io");
                                       break;
                                   default:
