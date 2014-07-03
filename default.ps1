@@ -9,7 +9,20 @@ properties {
 
 task default -depends package
 
-task compile {
+task clean {
+	Write-Host "Creating artifacts directory" -ForegroundColor Green
+
+	rd $build_dir\* -rec -force -ErrorAction SilentlyContinue | out-null
+	rd $base_dir\Regard.Endpoint\bin\* -rec -force -ErrorAction SilentlyContinue | out-null
+	rd $base_dir\Regard.Endpoint\obj\* -rec -force -ErrorAction SilentlyContinue | out-null
+	rd $base_dir\Regard.Endpoint.Tests\bin\* -rec -force -ErrorAction SilentlyContinue | out-null
+	rd $base_dir\Regard.Endpoint.Tests\obj\* -rec -force -ErrorAction SilentlyContinue | out-null
+	
+	Write-Host "Cleaning SLN" -ForegroundColor Green
+	Exec { msbuild $base_dir\Regard.Endpoint.sln /t:Clean /p:Configuration=$config } 
+}
+
+task compile -depends clean {
     "Compiling"
     "   Regard.Endpoint.sln"
     
