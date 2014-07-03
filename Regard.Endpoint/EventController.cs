@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -32,6 +34,11 @@ namespace Regard.Endpoint
             try
             {
                 Trace.TraceInformation("Receiving event");
+
+                var traceListeners = Trace.Listeners.Cast<TraceListener>().ToList();
+
+                Trace.TraceInformation(traceListeners.Count.ToString());
+
 
                 // Sanity!
                 if (m_EventProcessor == null)
