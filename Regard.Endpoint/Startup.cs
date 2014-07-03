@@ -1,6 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Configuration;
+using System.Diagnostics;
 using System.Net;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Http;
+using Exceptionless;
 using Microsoft.Owin.Cors;
 using Ninject;
 using Owin;
@@ -34,22 +38,27 @@ namespace Regard.Endpoint
             }, m_Module));
             httpConfiguration.MapHttpAttributeRoutes();
 
+            bool exceptionlessEnabled;
+            if (Boolean.TryParse(ConfigurationManager.AppSettings.Get("regard-exceptionless-enabled"), out exceptionlessEnabled) && exceptionlessEnabled)
+            {
+                ExceptionlessClient.Current.RegisterWebApi(httpConfiguration);
+            }
+
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(httpConfiguration);
             app.Run(async x =>
-                          {
-                              switch (x.Request.Method)
-                              {
-                                  case "GET":
-                                      Trace.TraceInformation("Redirect to withregard.io from {0}", x.Request.Uri);
-                                      x.Response.Redirect("https://withregard.io");
-                                      break;
-                                  default:
-                                      x.Response.StatusCode = (int) HttpStatusCode.NotFound;
-                                      break;
-                              }
-                          });
-
+                    {
+                        switch (x.Request.Method)
+                        {
+                            case "GET":
+                                Trace.TraceInformation("Redirect to withregard.io from {0}", x.Request.Uri);
+                                x.Response.Redirect("https://withregard.io");
+                                break;
+                            default:
+                                x.Response.StatusCode = (int) HttpStatusCode.NotFound;
+                                break;
+                        }
+                    });
         }
     }
 }

@@ -39,6 +39,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Exceptionless">
+      <HintPath>..\packages\Exceptionless.1.5.2092\lib\net45\Exceptionless.dll</HintPath>
+    </Reference>
+    <Reference Include="Exceptionless.Models">
+      <HintPath>..\packages\Exceptionless.1.5.2092\lib\net45\Exceptionless.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="Exceptionless.WebApi">
+      <HintPath>..\packages\Exceptionless.WebApi.1.5.2092\lib\net45\Exceptionless.WebApi.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Loader.IIS">
       <HintPath>..\packages\Microsoft.AspNet.Loader.IIS.0.1.5-pre\lib\net45\Microsoft.AspNet.Loader.IIS.dll</HintPath>
     </Reference>
