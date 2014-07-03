@@ -124,6 +124,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Deploymentcontroller.cs" />
     <Compile Include="EndpointModule.cs" />
     <Compile Include="EventController.cs" />
     <Compile Include="EventValidator.cs" />
