@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Diagnostics;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 using System.Web.Http;
 using Exceptionless;
 using Microsoft.Owin.Cors;
@@ -28,6 +28,9 @@ namespace Regard.Endpoint
 
         public void Configuration(IAppBuilder app)
         {
+            // We need some completion threads for finishing data writes
+            ThreadPool.SetMaxThreads(40, 100);
+
             Trace.TraceInformation("Regard Endpoint is starting");
 
             // Configure for attribute routes
