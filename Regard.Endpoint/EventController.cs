@@ -35,11 +35,6 @@ namespace Regard.Endpoint
             {
                 Trace.TraceInformation("Receiving event");
 
-                var traceListeners = Trace.Listeners.Cast<TraceListener>().ToList();
-
-                Trace.TraceInformation(traceListeners.Count.ToString());
-
-
                 // Sanity!
                 if (m_EventProcessor == null)
                 {
