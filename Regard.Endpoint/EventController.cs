@@ -47,6 +47,8 @@ namespace Regard.Endpoint
 
                 bool eventWasProcessed = await m_EventProcessor.Process(organization, productId, payload);
 
+                Trace.WriteLine(String.Format("Was event processed? [{0}", eventWasProcessed));
+
                 return new HttpResponseMessage(eventWasProcessed ? HttpStatusCode.OK : HttpStatusCode.BadRequest);
             }
             catch (Exception e)
